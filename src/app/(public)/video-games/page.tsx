@@ -1,0 +1,42 @@
+import { PAGE } from '@/config/public-page'
+import { videoService } from '@/services/video'
+import { Heading } from '@components/ui/Heading'
+import { VideoItem } from '@components/ui/VideoItem'
+import { Gamepad2 } from 'lucide-react'
+import type { Metadata } from 'next'
+
+export const revalidate = 100
+export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  title: 'Video games',
+  description: 'Best video games videos',
+  alternates: {
+    canonical: PAGE.VIDEO_GAMES,
+  },
+  openGraph: {
+    type: 'website',
+    url: PAGE.VIDEO_GAMES,
+    title: 'Video games',
+  },
+}
+
+export default async function VideoGamesPage() {
+  const videos = (await videoService.getVideoGames()).videos
+  console.log(videos)
+
+  return (
+    <section>
+      <Heading icon={Gamepad2}>Video games</Heading>
+      <div className='grid-6-cols'>
+        {videos?.length ? (
+          videos.map((video) => <VideoItem key={video.id} video={video} />)
+        ) : (
+          <div className='text-nowrap'>
+            Video games are temporary unavailable
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
