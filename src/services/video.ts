@@ -1,4 +1,5 @@
-import { axiosClassic } from '@/app/api/axios'
+import { axiosClassic } from '@/api/axios'
+
 import type { IPaginatedVideosResponse, IVideo } from '@/types/video'
 
 const BASE_VIDEOS_URL = '/videos'

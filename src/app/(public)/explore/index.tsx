@@ -1,11 +1,13 @@
 'use client'
 
-import { videoService } from '@/services/video'
-import { Heading } from '@components/ui/Heading'
-import { SkeletonLoader } from '@components/ui/SkeletonLoader'
-import { VideoItem } from '@components/ui/VideoItem'
 import { useQuery } from '@tanstack/react-query'
 import { Compass } from 'lucide-react'
+
+import { Heading } from '@/ui/Heading'
+import { SkeletonLoader } from '@/ui/SkeletonLoader'
+import { VideoItem } from '@/ui/VideoItem'
+
+import { videoService } from '@/services/video'
 
 export default function Explore() {
   const { data, isLoading } = useQuery({
@@ -15,7 +17,7 @@ export default function Explore() {
 
   return (
     <section className='mt-8'>
-      <Heading icon={Compass}>Explore</Heading>
+      <Heading icon={Compass} text='Explore' />
       <div className='grid-6-cols'>
         {isLoading ? (
           <SkeletonLoader count={6} className='h-24 rounded-md' />

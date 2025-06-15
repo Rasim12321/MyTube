@@ -1,6 +1,7 @@
-import { PAGE } from '@/config/public-page'
 import { useRouter } from 'next/navigation'
-import { useState, type KeyboardEvent } from 'react'
+import { type KeyboardEvent, useState } from 'react'
+
+import { PAGE } from '@/config/public-page'
 
 export default function SearchField() {
   const [searchTerm, setSearchTerm] = useState('')

@@ -1,9 +1,12 @@
-import { PAGE } from '@/config/public-page'
-import { videoService } from '@/services/video'
-import { Heading } from '@components/ui/Heading'
-import { VideoItem } from '@components/ui/VideoItem'
 import { Flame } from 'lucide-react'
 import type { Metadata } from 'next'
+
+import { Heading } from '@/ui/Heading'
+import { VideoItem } from '@/ui/VideoItem'
+
+import { videoService } from '@/services/video'
+
+import { PAGE } from '@/config/public-page'
 
 export const revalidate = 100
 export const dynamic = 'force-static'
@@ -26,12 +29,10 @@ export default async function TrendingPage() {
 
   return (
     <section>
-      <Heading icon={Flame}>Trending</Heading>
+      <Heading icon={Flame} text='Trending' />
       <div className='grid-6-cols'>
         {videos?.length ? (
-          videos.map((video) => (
-            <VideoItem key={video.id} video={video} icon={Flame} />
-          ))
+          videos.map((video) => <VideoItem key={video.id} video={video} icon={Flame} />)
         ) : (
           <div className='text-nowrap'>Trends are temporary unavailable</div>
         )}

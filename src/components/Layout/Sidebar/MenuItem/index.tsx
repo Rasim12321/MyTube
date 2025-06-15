@@ -1,21 +1,18 @@
+'use client'
+
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import type { ISidebarItem } from '../types'
+import type { IMenuItemProps } from '@/components/Layout/Sidebar/types'
 
-interface Props {
-  item: ISidebarItem
-  isActive: boolean
-}
-
-export default function MenuItem({ item, isActive }: Props) {
+export default function MenuItem({ item, isActive }: IMenuItemProps) {
   return (
     <li>
       <Link href={item.link} className={'group py-3 flex items-center gap-5'}>
         <item.icon
           className={clsx('min-w-6', {
-            'group-hover:text-primary transition group-hover:rotate-14 min-w-6':
-              !isActive,
+            'group-hover:text-primary transition group-hover:rotate-14 min-w-6': !isActive,
+            'text-primary': isActive,
           })}
         />
         <span
@@ -27,9 +24,7 @@ export default function MenuItem({ item, isActive }: Props) {
           {item.label}
         </span>
       </Link>
-      {item.isBottomBorder && (
-        <span className='h-[1px] bg-border my-5 w-full block' />
-      )}
+      {item.isBottomBorder && <span className='h-[1px] bg-border my-5 w-full block' />}
     </li>
   )
 }

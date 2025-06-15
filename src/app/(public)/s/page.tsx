@@ -1,9 +1,8 @@
+import { NO_INDEX_PAGE } from 'constants/seo'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
-import { NO_INDEX_PAGE } from 'constants/seo'
-
-import SearchData from '.'
+import SearchData from '@/app/(public)/s'
 
 export const metadata: Metadata = {
   title: '',

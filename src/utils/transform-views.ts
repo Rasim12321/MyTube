@@ -1,25 +1,19 @@
-export function transformViews(views: number): string {
-  let formattedViews: string
+export function transformCount(count: number): string {
+  let formattedCount: string
 
-  if (views >= 1_000_000_000) {
-    formattedViews = (views / 1_000_000_000).toFixed(1)
-    formattedViews = formattedViews.endsWith('.0')
-      ? formattedViews.slice(0, -2)
-      : formattedViews
-    return `${formattedViews}B views`
-  } else if (views >= 1_000_000) {
-    formattedViews = (views / 1_000_000).toFixed(1)
-    formattedViews = formattedViews.endsWith('.0')
-      ? formattedViews.slice(0, -2)
-      : formattedViews
-    return `${formattedViews}M views`
-  } else if (views >= 1_000) {
-    formattedViews = (views / 1_000).toFixed(1)
-    formattedViews = formattedViews.endsWith('.0')
-      ? formattedViews.slice(0, -2)
-      : formattedViews
-    return `${formattedViews}K views`
+  if (count >= 1_000_000_000) {
+    formattedCount = (count / 1_000_000_000).toFixed(1)
+    formattedCount = formattedCount.endsWith('.0') ? formattedCount.slice(0, -2) : formattedCount
+    return `${formattedCount}B`
+  } else if (count >= 1_000_000) {
+    formattedCount = (count / 1_000_000).toFixed(1)
+    formattedCount = formattedCount.endsWith('.0') ? formattedCount.slice(0, -2) : formattedCount
+    return `${formattedCount}M`
+  } else if (count >= 1_000) {
+    formattedCount = (count / 1_000).toFixed(1)
+    formattedCount = formattedCount.endsWith('.0') ? formattedCount.slice(0, -2) : formattedCount
+    return `${formattedCount}K`
   } else {
-    return `${views} views`
+    return `${count}`
   }
 }

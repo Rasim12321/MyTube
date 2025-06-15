@@ -1,5 +1,6 @@
 export const PAGE = {
   HOME: '/',
+  AUTH: '/auth',
   TRENDING: '/trending',
   VIDEO_GAMES: '/video-games',
 

@@ -1,17 +1,24 @@
-import { STUDIO_PAGE } from '@/config/studio-page'
-import Image from 'next/image'
-import Link from 'next/link'
+import { useAppSelector } from '@/store'
+import { LogIn } from 'lucide-react'
+
+import HeaderAvatar from '@/components/Layout/Header/Avatar'
+import { LinkButton } from '@/components/ui/LinkButton'
+
+import { PAGE } from '@/config/public-page'
 
 export default function HeaderProfile() {
+  const { isLoggedIn } = useAppSelector((state) => state.auth)
+
+  if (!isLoggedIn)
+    return (
+      <LinkButton href={PAGE.AUTH}>
+        <LogIn />
+        Auth
+      </LinkButton>
+    )
   return (
-    <Link href={STUDIO_PAGE.SETTINGS} className='shrink-0'>
-      <Image
-        src={'/uploads/avatars/redgroup.jpg'}
-        alt=''
-        width={40}
-        height={40}
-        className='rounded-md '
-      />
-    </Link>
+    <div className='w-10 h-10'>
+      <HeaderAvatar />
+    </div>
   )
 }

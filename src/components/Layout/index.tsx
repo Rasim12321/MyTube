@@ -1,20 +1,26 @@
 'use client'
 
 import cn from 'clsx'
-import { useState, type PropsWithChildren } from 'react'
+import { type PropsWithChildren, useEffect, useState } from 'react'
+
+import Content from '@/components/Layout/Content'
+import Sidebar from '@/components/Layout/Sidebar'
+
+import { authService } from '@/services/auth'
 
 import styles from './styles.module.css'
-
-import Content from './Content'
-import Sidebar from './Sidebar'
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {
   const [isShowedSidebar, setIsShowedSidebar] = useState(true)
 
   const toggleSidebar = () => {
-    console.log(styles)
     setIsShowedSidebar(!isShowedSidebar)
   }
+
+  useEffect(() => {
+    authService.initializeAuth()
+  }, [])
+
   return (
     <main
       className={cn(

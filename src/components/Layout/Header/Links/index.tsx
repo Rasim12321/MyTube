@@ -1,6 +1,7 @@
-import { STUDIO_PAGE } from '@/config/studio-page'
 import { Bell, LayoutGrid, PlusSquare } from 'lucide-react'
 import Link from 'next/link'
+
+import { STUDIO_PAGE } from '@/config/studio-page'
 
 const links = [
   { href: STUDIO_PAGE.UPLOAD, icon: PlusSquare },

@@ -1,12 +1,14 @@
 'use client'
 
-import { videoService } from '@/services/video'
-import { Heading } from '@components/ui/Heading'
-import { SkeletonLoader } from '@components/ui/SkeletonLoader'
-import { VideoItem } from '@components/ui/VideoItem'
 import { useQuery } from '@tanstack/react-query'
 import { Search } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
+
+import { Heading } from '@/ui/Heading'
+import { SkeletonLoader } from '@/ui/SkeletonLoader'
+import { VideoItem } from '@/ui/VideoItem'
+
+import { videoService } from '@/services/video'
 
 export default function SearchData() {
   const searchParams = useSearchParams()
@@ -19,9 +21,7 @@ export default function SearchData() {
 
   return (
     <section>
-      <Heading isH1 icon={Search}>
-        Search &quot;{searchTerm}&quot;
-      </Heading>
+      <Heading isH1 icon={Search} text={<>Search &quot;{searchTerm}&quot;</>}></Heading>
       <div className='grid-6-cols'>
         {isLoading ? (
           <SkeletonLoader count={6} className='h-24 rounded-md' />

@@ -14,3 +14,8 @@ export interface ISidebarSubItem {
   isLiveNow?: boolean
   isRecentUpload?: boolean
 }
+
+export interface IMenuItemProps {
+  item: ISidebarItem
+  isActive: boolean
+}

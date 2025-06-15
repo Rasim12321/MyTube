@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 
-import Header from '../Header'
+import Header from '@/components/Layout/Header'
 
 export default function Content({ children }: PropsWithChildren<unknown>) {
   return (

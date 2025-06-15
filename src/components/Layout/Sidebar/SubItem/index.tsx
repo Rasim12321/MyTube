@@ -2,7 +2,7 @@ import { Dot, Radio } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import type { ISidebarSubItem } from '../types'
+import type { ISidebarSubItem } from '@/components/Layout/Sidebar/types'
 
 interface Props {
   item: ISidebarSubItem

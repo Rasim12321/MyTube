@@ -1,10 +1,12 @@
-import { videoService } from '@/services/video'
-import { Heading } from '@components/ui/Heading'
-import { VideoItem } from '@components/ui/VideoItem'
 import { Flame } from 'lucide-react'
 import type { Metadata } from 'next'
 
-import Explore from './(public)/explore'
+import { Heading } from '@/ui/Heading'
+import { VideoItem } from '@/ui/VideoItem'
+
+import { videoService } from '@/services/video'
+
+import Explore from './explore'
 
 export const revalidate = 100
 export const dynamic = 'force-static'
@@ -29,7 +31,7 @@ export default async function Home() {
     <section>
       {trendingVideos?.length && (
         <section>
-          <Heading icon={Flame}>Trending</Heading>
+          <Heading icon={Flame} text='Trending' />
           <div className='grid-6-cols'>
             {trendingVideos.map((video) => (
               <VideoItem key={video.id} video={video} icon={Flame} />
