@@ -1,16 +1,12 @@
 @import 'tailwindcss';
 
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
 @theme {
-  --padding-layout: 1.2rem;
+  --padding-layout: 1.4rem;
 
   --color-primary: #ef4444;
   --color-bg: #191b28;
   --color-white: #fff;
-  --color-border: #2a3439;
+  --color-border: rgba(255, 255, 255, 0.07);
 
   --duration-default: 333ms;
   --timing-default: ease-in-out;
@@ -22,11 +18,62 @@
 
 html,
 body {
-  @apply text-white bg-bg text-base;
+  @apply bg-bg text-base text-white;
 }
 
 @layer utilities {
   .grid-6-cols {
-    @apply grid grid-cols-6 gap-6
+    @apply grid grid-cols-6 gap-6;
   }
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 10.5px;
+  height: 10.5px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 10.5px;
+  height: 10.5px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider::-ms-thumb {
+  width: 10.5px;
+  height: 10.5px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.rc-slider-handle:focus,
+.rc-slider-handle:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.tooltip-simple-text.rc-slider-tooltip .rc-slider-tooltip-inner {
+  @apply text-base;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  color: #fff !important;
+  height: 16px;
+}
+
+.tooltip-simple-text.rc-slider-tooltip .rc-slider-tooltip-arrow {
+  display: none !important; /* Убираем стрелку тултипа */
+}
+
+.tooltip-simple-text.rc-slider-tooltip {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }

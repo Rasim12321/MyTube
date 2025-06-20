@@ -13,17 +13,17 @@ export default function HeaderAvatar() {
   if (isLoading) return <SkeletonLoader className='w10 mb8 rounded-md' />
   return (
     <div className='relative'>
-      <Link href={STUDIO_PAGE.SETTINGS} className='shrink-0 '>
+      <Link href={STUDIO_PAGE.SETTINGS} className='shrink-0'>
         <Image
           src={profile?.channel?.avatarUrl || '/profile.png'}
           alt=''
           width={40}
           height={40}
-          className='rounded-md h-10'
+          className='h-10 rounded-md'
         />
       </Link>
       {!profile?.verificationToken && (
-        <div className='absolute -left-4 -bottom-3.5 bg-primary p-0.5 rounded text-xs w-max'>
+        <div className='bg-primary absolute -bottom-3.5 -left-4 w-max rounded p-0.5 text-xs'>
           Not verified
         </div>
       )}

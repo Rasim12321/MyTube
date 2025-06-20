@@ -8,7 +8,7 @@ import type { IMenuItemProps } from '@/components/Layout/Sidebar/types'
 export default function MenuItem({ item, isActive }: IMenuItemProps) {
   return (
     <li>
-      <Link href={item.link} className={'group py-3 flex items-center gap-5'}>
+      <Link title={item.label} href={item.link} className={'group py-3 flex items-center gap-5'}>
         <item.icon
           className={clsx('min-w-6', {
             'group-hover:text-primary transition group-hover:rotate-14 min-w-6': !isActive,

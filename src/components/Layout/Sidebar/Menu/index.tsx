@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/store'
+import { useTypedSelector } from '@/store'
 import { usePathname } from 'next/navigation'
 import { match } from 'path-to-regexp'
 
@@ -15,11 +15,11 @@ interface Props {
 
 export default function SidebarMenu({ title, menu }: Props) {
   const pathname = usePathname()
-  const { isLoggedIn } = useAppSelector((state) => state.auth)
+  const { isLoggedIn } = useTypedSelector((state) => state.auth)
 
   return (
     <nav>
-      {title && <div className='opacity-40 uppercase text-xs mb-3 font-medium'>{title}</div>}
+      {title && <div className='mb-3 text-xs font-medium uppercase opacity-40'>{title}</div>}
       <ul>
         {menu.map((menuItem) => {
           const props = {

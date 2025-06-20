@@ -1,8 +1,8 @@
 import { Gamepad2 } from 'lucide-react'
 import type { Metadata } from 'next'
 
-import { Heading } from '@/ui/Heading'
-import { VideoItem } from '@/ui/VideoItem'
+import { Heading } from '@/components/ui/Heading'
+import { VideoItem } from '@/components/ui/VideoItem'
 
 import { videoService } from '@/services/video'
 

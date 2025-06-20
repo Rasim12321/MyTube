@@ -2,7 +2,7 @@ import { UploadCloud } from 'lucide-react'
 import { useId } from 'react'
 import type { FieldError } from 'react-hook-form'
 
-import { ImagePreview } from '@/components/ui/ImagePreview'
+import { ImagePreview } from '@/components/sections/ImagePreview'
 
 import { useUpload } from '@/hooks/useUpload'
 
@@ -36,20 +36,20 @@ export function UploadField({
 
   return (
     <div className={className}>
-      <label htmlFor={inputId} className='block text-gray-400 font-semibold mb-2'>
+      <label htmlFor={inputId} className='mb-2 block font-semibold text-gray-400'>
         {label}
       </label>
 
       <label
         htmlFor={inputId}
-        className='flex items-center px-4 py-2 bg-transparent text-primary rounded-lg shadow-md cursor-pointer hover:bg-primary hover:text-white border border-primary transition-colors w-max'
+        className='text-primary hover:bg-primary border-primary flex w-max cursor-pointer items-center rounded-lg border bg-transparent px-4 py-2 shadow-md transition-colors hover:text-white'
       >
         <UploadCloud className='mr-2' />
         Upload
       </label>
 
       <input id={inputId} type='file' onChange={uploadFile} accept='image/*' className='hidden' />
-      {error && <p className='text-red-500 text-sm mt-1'>{error.message}</p>}
+      {error && <p className='mt-1 text-sm text-red-500'>{error.message}</p>}
 
       {isImage && (
         <ImagePreview

@@ -14,7 +14,12 @@
   "htmlWhitespaceSensitivity": "css",
   "endOfLine": "lf",
   "embeddedLanguageFormatting": "auto",
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "cssEnable": ["css", "scss", "less"],
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "tailwindConfig": "./tailwind.config.js",
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@/components/(.*)$",

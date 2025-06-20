@@ -48,7 +48,7 @@ const DynamicSubscribeButton = dynamic(
   },
   {
     ssr: false,
-    loading: () => <SkeletonLoader className='w-40 h-10 rounded-md mb-0' />,
+    loading: () => <SkeletonLoader className='mb-0 h-10 w-40 rounded-md' />,
   }
 )
 

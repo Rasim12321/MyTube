@@ -1,14 +1,15 @@
 import { axiosClassic } from '@/api/axios'
 
-import type { IPaginatedVideosResponse, IVideo } from '@/types/video'
+import type { IPaginatedResponse } from '@/types/common'
+import type { ISingleVideoResponse, IVideo } from '@/types/video'
 
-const BASE_VIDEOS_URL = '/videos'
+const VIDEOS = '/videos'
 
 export const videoService = {
-  async getAllVideos(searchTerm: string | null) {
+  async getAll(searchTerm?: string | null) {
     try {
-      const { data } = await axiosClassic.get<IPaginatedVideosResponse>(
-        BASE_VIDEOS_URL,
+      const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(
+        VIDEOS,
         searchTerm ? { params: { searchTerm } } : {}
       )
       return data
@@ -20,9 +21,7 @@ export const videoService = {
 
   async getExploreVideos() {
     try {
-      const { data } = await axiosClassic.get<IPaginatedVideosResponse>(
-        `${BASE_VIDEOS_URL}/explore`
-      )
+      const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(`${VIDEOS}/explore`)
       return data
     } catch (error) {
       console.error(error)
@@ -32,9 +31,7 @@ export const videoService = {
 
   async getVideoGames() {
     try {
-      const { data } = await axiosClassic.get<IPaginatedVideosResponse>(
-        `${BASE_VIDEOS_URL}/games`
-      )
+      const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(`${VIDEOS}/games`)
       return data
     } catch (error) {
       console.error(error)
@@ -44,13 +41,27 @@ export const videoService = {
 
   async getTrendingVideos() {
     try {
-      const { data } = await axiosClassic.get<IVideo[]>(
-        `${BASE_VIDEOS_URL}/trending`
-      )
+      const { data } = await axiosClassic.get<IVideo[]>(`${VIDEOS}/trending`)
       return data
     } catch (error) {
       console.error(error)
       throw new Error('Failed to fetch trending videos')
+    }
+  },
+
+  async byPublicId(publicId: string | null) {
+    if (!publicId) {
+      throw new Error('Slug is required')
+    }
+
+    try {
+      const { data } = await axiosClassic.get<ISingleVideoResponse>(
+        `${VIDEOS}/by-publicId/${publicId}`
+      )
+      return data
+    } catch (error) {
+      console.error(error)
+      throw new Error('Failed to fetch all videos')
     }
   },
 }

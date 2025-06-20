@@ -1,11 +1,11 @@
 import { Video } from 'lucide-react'
 
-import { Heading } from '@/ui/Heading'
-import { VideoItem } from '@/ui/VideoItem'
+import { Heading } from '@/components/ui/Heading'
+import { VideoItem } from '@/components/ui/VideoItem'
 
 import type { IChannel } from '@/types/channel'
 
-export default async function ChanelVideos({ videos }: { videos: IChannel['videos'] }) {
+export default async function ChannelVideos({ videos }: { videos: IChannel['videos'] }) {
   return (
     <section>
       <Heading icon={Video} text='Videos' />

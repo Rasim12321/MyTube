@@ -1,0 +1,20 @@
+.article {
+  font-size: 0.91rem;
+  line-height: 1.375;
+  color: #e5e7eb;
+}
+
+.article a {
+  border-bottom: 2px solid transparent;
+  color: #60a5fa;
+  transition: border-color 0.3s ease;
+}
+
+.article a:hover {
+  border-bottom-color: #3b82f6;
+}
+
+.article p {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

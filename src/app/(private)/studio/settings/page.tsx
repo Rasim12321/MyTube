@@ -1,9 +1,8 @@
 import { Settings } from 'lucide-react'
 import type { Metadata } from 'next'
 
-import { SettingsForm } from '@/components/SettingsForm'
-
-import { Heading } from '@/ui/Heading'
+import { SettingsForm } from '@/components/sections/SettingsForm'
+import { Heading } from '@/components/ui/Heading'
 
 import { NO_INDEX_PAGE } from '@/constants/seo'
 

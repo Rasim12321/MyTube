@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import type { TAspectRation } from '@/components/ui/UploadField'
 
-import { SkeletonLoader } from '../SkeletonLoader'
+import { SkeletonLoader } from '../../ui/SkeletonLoader'
 
 interface Props {
   isLoading: boolean
@@ -31,7 +31,7 @@ export function ImagePreview({ isLoading, overlay, value, aspectRation }: Props)
             {!!overlay && (
               <Image
                 alt='Overlay'
-                className='rounded-md absolute top-0 left-0 w-full h-full'
+                className='absolute top-0 left-0 h-full w-full rounded-md'
                 src={overlay}
                 width={width}
                 height={height}

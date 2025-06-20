@@ -1,16 +1,17 @@
 import { Menu } from 'lucide-react'
 
-import { Logo } from '@/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 
 interface Props {
   toggleSidebar: () => void
 }
 export default function SidebarHeader({ toggleSidebar }: Props) {
   return (
-    <div className='flex items-center gap-6 mb-12 pt-1.5'>
+    <div className='mb-11 flex items-center gap-6 pt-1.5'>
       <button
-        className='opacity-85 hover:opacity-100 transition-opacity cursor-pointer'
+        className='cursor-pointer opacity-85 transition-opacity hover:opacity-100'
         onClick={toggleSidebar}
+        title='Toggle sidebar'
       >
         <Menu />
       </button>

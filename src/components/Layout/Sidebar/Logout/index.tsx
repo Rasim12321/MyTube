@@ -1,6 +1,6 @@
 'use client'
 
-import { useAppSelector } from '@/store'
+import { useTypedSelector } from '@/store'
 import { useMutation } from '@tanstack/react-query'
 import { LogOut } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
@@ -24,15 +24,16 @@ export default function Logout() {
     },
   })
 
-  const { isLoggedIn } = useAppSelector((state) => state.auth)
+  const { isLoggedIn } = useTypedSelector((state) => state.auth)
 
   if (!isLoggedIn) return null
   return (
     <button
       onClick={() => mutate()}
-      className={'group py-3 flex items-center gap-5 cursor-pointer'}
+      title='Logout'
+      className={'group flex cursor-pointer items-center gap-5 py-3'}
     >
-      <LogOut className={'min-w-6 group-hover:text-primary transition group-hover:rotate-14'} />
+      <LogOut className={'group-hover:text-primary min-w-6 transition group-hover:rotate-14'} />
       <span>{isPending ? 'Please wait...' : 'Logout'}</span>
     </button>
   )

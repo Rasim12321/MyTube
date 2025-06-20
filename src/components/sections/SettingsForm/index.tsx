@@ -99,7 +99,7 @@ export function SettingsForm() {
             />
           </div>
         </div>
-        <div className='text-center mt-10 w-40'>
+        <div className='mt-10 w-40 text-center'>
           <Button type='submit' isLoading={isLoading}>
             Update
           </Button>

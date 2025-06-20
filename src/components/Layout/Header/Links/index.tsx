@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { STUDIO_PAGE } from '@/config/studio-page'
 
 const links = [
-  { href: STUDIO_PAGE.UPLOAD, icon: PlusSquare },
+  { href: STUDIO_PAGE.UPLOAD_VIDEO, icon: PlusSquare },
   { href: STUDIO_PAGE.HOME, icon: LayoutGrid },
   { href: STUDIO_PAGE.HOME, icon: Bell },
 ]

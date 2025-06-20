@@ -19,6 +19,13 @@ export interface IFullUser extends IUser {
   watchHistory: IWatchHistory
 }
 
+export interface IVideoLike {
+  id: string
+  videoId: string
+  userId: string
+}
+
 export interface IProfileResponse extends IFullUser {
   subscribedVideos?: IVideo[]
+  likes: IVideoLike[]
 }

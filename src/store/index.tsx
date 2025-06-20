@@ -12,5 +12,5 @@ export const store = configureStore({
 export type TRootState = ReturnType<typeof store.getState>
 export type TAppDispatch = typeof store.dispatch
 
-export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector
+export const useTypedSelector: TypedUseSelectorHook<TRootState> = useSelector
 export const useAppDispatch = () => useDispatch<TAppDispatch>

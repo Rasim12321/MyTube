@@ -7,12 +7,12 @@ import SearchField from './SearchField'
 
 const DynamicHeaderProfile = dynamic(() => import('./Profile'), {
   ssr: false,
-  loading: () => <SkeletonLoader className='w-10 mb-0 rounded-md' />,
+  loading: () => <SkeletonLoader className='mb-0 w-10 rounded-md' />,
 })
 
 export default function Header() {
   return (
-    <header className='p-layout border-b border-border flex items-center justify-between'>
+    <header className='p-layout border-border flex items-center justify-between border-b'>
       <SearchField />
       <div className='flex items-center gap-8'>
         <HeaderLinks />

@@ -4,9 +4,9 @@ import { useQuery } from '@tanstack/react-query'
 import { Search } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 
-import { Heading } from '@/ui/Heading'
-import { SkeletonLoader } from '@/ui/SkeletonLoader'
-import { VideoItem } from '@/ui/VideoItem'
+import { Heading } from '@/components/ui/Heading'
+import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
+import { VideoItem } from '@/components/ui/VideoItem'
 
 import { videoService } from '@/services/video'
 
@@ -16,7 +16,7 @@ export default function SearchData() {
 
   const { data, isLoading } = useQuery({
     queryKey: ['search', searchTerm],
-    queryFn: () => videoService.getAllVideos(searchTerm),
+    queryFn: () => videoService.getAll(searchTerm),
   })
 
   return (

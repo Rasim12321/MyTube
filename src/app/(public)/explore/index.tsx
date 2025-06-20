@@ -3,9 +3,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { Compass } from 'lucide-react'
 
-import { Heading } from '@/ui/Heading'
-import { SkeletonLoader } from '@/ui/SkeletonLoader'
-import { VideoItem } from '@/ui/VideoItem'
+import { Heading } from '@/components/ui/Heading'
+import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
+import { VideoItem } from '@/components/ui/VideoItem'
 
 import { videoService } from '@/services/video'
 

@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
-import ChanelVideos from '@/components/ChanelVideos'
-import DynamicSubscribeButton from '@/components/SubscribeButton'
+import ChanelVideos from '@/components/sections/ChannelVideos'
+import { Heading } from '@/components/ui/Heading'
+import DynamicSubscribeButton from '@/components/ui/SubscribeButton'
 import { VerifiedBadge } from '@/components/ui/VerifiedBadge'
-
-import { Heading } from '@/ui/Heading'
 
 import { transformCount } from '@/utils/transform-views'
 
@@ -44,24 +43,24 @@ export default async function ChannelPage({ params }: TPageSlugProp) {
   return (
     <section>
       <div>
-        <div className='relative w-full h-[220px] rounded-3xl overflow-hidden shadow-md'>
+        <div className='relative h-[220px] w-full overflow-hidden rounded-3xl shadow-md'>
           <Image
             alt={channel.user.name || ''}
             src={channel.bannerUrl}
-            layout='fill'
-            objectFit='cover'
+            fill
+            style={{ objectFit: 'cover' }}
             quality={100}
             priority
           />
         </div>
-        <div className='flex items-start gap-5 mt-7 mb-12'>
+        <div className='mt-7 mb-12 flex items-start gap-5'>
           <Image
             alt={channel.slug}
             src={channel.avatarUrl}
             width={162}
             height={162}
             priority
-            className='rounded-xl flex-shrink-0'
+            className='flex-shrink-0 rounded-xl'
           />
           <div>
             <Heading
@@ -74,14 +73,14 @@ export default async function ChannelPage({ params }: TPageSlugProp) {
               }
               isPageHeading
             />
-            <div className='mb-2 text-gray-400 text-[0.9rem] flex items-center gap-1'>
+            <div className='mb-2 flex items-center gap-1 text-[0.9rem] text-gray-400'>
               <span>/{channel.slug}</span>
               <span>•</span>
               <span>{transformCount(channel.subscribers.length)} subscribers</span>
               <span>•</span>
               <span>{channel.videos.length} videos</span>
             </div>
-            <article className='mb-4 text-gray-400 text-sm leading-snug  max-w-[500px]'>
+            <article className='mb-4 max-w-[500px] text-sm leading-snug text-gray-400'>
               {channel.description}
             </article>
             <DynamicSubscribeButton slug={slug} />

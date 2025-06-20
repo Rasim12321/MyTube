@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 
-import { SkeletonLoader } from '@/ui/SkeletonLoader'
+import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
 
 import { NO_INDEX_PAGE } from '@/constants/seo'
 

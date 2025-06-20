@@ -2,10 +2,9 @@
 
 import { Heart } from 'lucide-react'
 
+import { Heading } from '@/components/ui/Heading'
+import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
 import { VideoItem } from '@/components/ui/VideoItem'
-
-import { Heading } from '@/ui/Heading'
-import { SkeletonLoader } from '@/ui/SkeletonLoader'
 
 import { useProfile } from '@/hooks/useProfile'
 
