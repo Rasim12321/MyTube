@@ -1,4 +1,4 @@
-import { EnumTokens } from '@/enums'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { CreateAxiosDefaults } from 'axios'
 import axios from 'axios'
 import Cookies from 'js-cookie'
@@ -9,6 +9,8 @@ import { authService } from '@/services/auth'
 
 import { API_URL } from '@/constants/api'
 
+import { EnumTokens } from '@/types/enums'
+
 const options: CreateAxiosDefaults = {
   baseURL: API_URL,
   headers: {
@@ -18,21 +20,34 @@ const options: CreateAxiosDefaults = {
 }
 
 export const axiosClassic = axios.create(options)
-
 export const instance = axios.create(options)
 
-instance.interceptors.request.use((config) => {
-  const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
+const handleError = async (error: any) => {
+  const { toast } = await import('react-hot-toast')
 
+  const errorMessage = errorCatch(error)
+
+  toast.dismiss()
+
+  toast.error(errorMessage)
+
+  console.error('An error occurred:', error)
+  throw error
+}
+
+const addAuthorizationHeader = (config: any) => {
+  const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
   if (config.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
   }
-
   return config
-})
+}
+
+instance.interceptors.request.use(addAuthorizationHeader)
+axiosClassic.interceptors.request.use(addAuthorizationHeader)
 
 instance.interceptors.response.use(
-  (config) => config,
+  (response) => response,
   async (error) => {
     const originalRequest = error.config
 
@@ -48,17 +63,25 @@ instance.interceptors.response.use(
       try {
         await authService.getNewTokens()
         return instance.request(originalRequest)
-      } catch (error) {
-        if (
-          errorCatch(error) === 'jwt expired' ||
-          errorCatch(error) === 'Refresh token not passed'
-        ) {
+      } catch (e) {
+        if (errorCatch(e) === 'jwt expired' || errorCatch(e) === 'Refresh token not passed') {
           authService.removeFromStorage()
-          throw error
+          throw e
         }
       }
     }
 
+    await handleError(error)
+    throw error
+  }
+)
+
+axiosClassic.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error?.response?.status !== 401) {
+      await handleError(error)
+    }
     throw error
   }
 )

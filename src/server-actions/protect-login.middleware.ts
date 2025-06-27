@@ -11,6 +11,5 @@ export async function protectLoginPages(request: NextRequest) {
 
   const verifiedData = await jwtVerifyServer(tokens.accessToken)
   if (!verifiedData) return NextResponse.next()
-
   return nextRedirect(STUDIO_PAGE.HOME, request.url)
 }

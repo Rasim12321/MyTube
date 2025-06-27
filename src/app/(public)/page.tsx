@@ -1,12 +1,11 @@
 import { Flame } from 'lucide-react'
 import type { Metadata } from 'next'
 
+import { ExploreSection } from '@/components/sections/ExploreSection'
 import { Heading } from '@/components/ui/Heading'
 import { VideoItem } from '@/components/ui/VideoItem'
 
 import { videoService } from '@/services/video'
-
-import Explore from './explore'
 
 export const revalidate = 100
 export const dynamic = 'force-static'
@@ -37,7 +36,7 @@ export default async function Home() {
               <VideoItem key={video.id} video={video} icon={Flame} />
             ))}
           </div>
-          <Explore />
+          <ExploreSection />
         </section>
       )}
     </section>

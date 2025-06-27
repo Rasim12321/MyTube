@@ -32,7 +32,9 @@ export default async function TrendingPage() {
       <Heading icon={Flame} text='Trending' />
       <div className='grid-6-cols'>
         {videos?.length ? (
-          videos.map((video) => <VideoItem key={video.id} video={video} icon={Flame} />)
+          videos.map((video) => (
+            <VideoItem isImagePriority key={video.id} video={video} icon={Flame} />
+          ))
         ) : (
           <div className='text-nowrap'>Trends are temporary unavailable</div>
         )}

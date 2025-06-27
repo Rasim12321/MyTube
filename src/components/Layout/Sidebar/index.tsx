@@ -11,6 +11,8 @@ import {
 } from '@/components/Layout/Sidebar/data'
 import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
 
+import { SITE_NAME } from '@/constants/api'
+
 import { STUDIO_PAGE } from '@/config/studio-page'
 
 const DynamicLogout = dynamic(() => import('@/components/Layout/Sidebar/Logout'), {
@@ -21,22 +23,22 @@ const DynamicLogout = dynamic(() => import('@/components/Layout/Sidebar/Logout')
 interface Props {
   toggleSidebar: () => void
 }
+
 export default function Sidebar({ toggleSidebar }: Props) {
   const pathname = usePathname()
   return (
-    <aside className='p-layout border-border overflow-hidden border-r whitespace-nowrap'>
+    <aside className='border-border overflow-hidden border-r-2 px-5 py-4 whitespace-nowrap'>
+      {' '}
       <SidebarHeader toggleSidebar={toggleSidebar} />
       <SidebarMenu menu={SIDEBAR_DATA} />
       <SidebarSubscriptions />
-
       {!!pathname.includes(STUDIO_PAGE.HOME) && (
         <>
           <SidebarMenu title='Studio' menu={STUDIO_SIDEBAR_DATA} />
           <span className='bg-border my-5 block h-[1px] w-full' />
         </>
       )}
-
-      <SidebarMenu title='More from youtube' menu={MORE_SIDEBAR_DATA} />
+      <SidebarMenu title={`More from ${SITE_NAME}`} menu={MORE_SIDEBAR_DATA} />
       <DynamicLogout />
     </aside>
   )

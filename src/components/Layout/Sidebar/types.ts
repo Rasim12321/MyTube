@@ -18,4 +18,5 @@ export interface ISidebarSubItem {
 export interface IMenuItemProps {
   item: ISidebarItem
   isActive: boolean
+  isDisabled?: boolean
 }

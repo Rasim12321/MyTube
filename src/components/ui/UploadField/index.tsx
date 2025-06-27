@@ -2,7 +2,7 @@ import { UploadCloud } from 'lucide-react'
 import { useId } from 'react'
 import type { FieldError } from 'react-hook-form'
 
-import { ImagePreview } from '@/components/sections/ImagePreview'
+import { ImagePreview } from '@/components/ui/UploadField/ImagePreview'
 
 import { useUpload } from '@/hooks/useUpload'
 
@@ -16,8 +16,8 @@ interface Props {
   error?: FieldError
   className?: string
   isImage?: boolean
-  aspectRation?: TAspectRation
   overlay?: string
+  sizePreview?: [number, number]
 }
 
 export function UploadField({
@@ -28,8 +28,8 @@ export function UploadField({
   folder,
   isImage = true,
   value,
-  aspectRation = '1:1',
   overlay,
+  sizePreview,
 }: Props) {
   const { isLoading, uploadFile } = useUpload({ onChange, folder })
   const inputId = useId()
@@ -42,7 +42,7 @@ export function UploadField({
 
       <label
         htmlFor={inputId}
-        className='text-primary hover:bg-primary border-primary flex w-max cursor-pointer items-center rounded-lg border bg-transparent px-4 py-2 shadow-md transition-colors hover:text-white'
+        className='text-primary hover:bg-primary border-primary flex w-[151px] cursor-pointer items-center justify-center rounded-lg border bg-transparent px-4 py-2 shadow-md transition-colors hover:text-white'
       >
         <UploadCloud className='mr-2' />
         Upload
@@ -54,9 +54,9 @@ export function UploadField({
       {isImage && (
         <ImagePreview
           isLoading={isLoading}
-          aspectRation={aspectRation}
           overlay={overlay}
           value={value}
+          sizePreview={sizePreview}
         />
       )}
     </div>

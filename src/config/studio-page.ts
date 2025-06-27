@@ -4,6 +4,6 @@ export const STUDIO_PAGE = {
   UPLOAD_VIDEO: `/studio/upload`,
 
   EDIT_VIDEO(path: string) {
-    return `/edit/v/${path}`
+    return `${this.HOME}/edit/v/${path}`
   },
 } as const

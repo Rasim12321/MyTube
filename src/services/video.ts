@@ -1,52 +1,46 @@
 import { axiosClassic } from '@/api/axios'
 
-import type { IPaginatedResponse } from '@/types/common'
-import type { ISingleVideoResponse, IVideo } from '@/types/video'
+import type { IPaginatedResponse, IPaginationParams } from '@/types/common'
+import type { IFullVideo, ISingleVideoResponse, IVideo } from '@/types/video'
 
 const VIDEOS = '/videos'
 
 export const videoService = {
   async getAll(searchTerm?: string | null) {
-    try {
-      const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(
-        VIDEOS,
-        searchTerm ? { params: { searchTerm } } : {}
-      )
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error('Failed to fetch all videos')
-    }
+    const { data } = await axiosClassic.get<IPaginatedResponse<IFullVideo>>(
+      VIDEOS,
+      searchTerm ? { params: { searchTerm } } : {}
+    )
+    return data
   },
 
-  async getExploreVideos() {
-    try {
-      const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(`${VIDEOS}/explore`)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error('Failed to fetch explore videos')
-    }
+  async getExploreVideos(userId?: string, params?: IPaginationParams, excludeIds?: string[]) {
+    const excludeIdsString = excludeIds?.join(',') || ''
+    const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(`${VIDEOS}/explore`, {
+      params: userId
+        ? {
+            userId,
+            ...params,
+            excludeIds: excludeIdsString,
+          }
+        : params,
+    })
+    return data
   },
 
   async getVideoGames() {
-    try {
-      const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(`${VIDEOS}/games`)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error('Failed to fetch explore videos')
-    }
+    const { data } = await axiosClassic.get<IPaginatedResponse<IVideo>>(`${VIDEOS}/games`)
+    return data
   },
 
   async getTrendingVideos() {
-    try {
-      const { data } = await axiosClassic.get<IVideo[]>(`${VIDEOS}/trending`)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error('Failed to fetch trending videos')
-    }
+    const { data } = await axiosClassic.get<IVideo[]>(`${VIDEOS}/trending`)
+    return data
+  },
+
+  async updateViews(publicId: string) {
+    const data = await axiosClassic.put<IVideo[]>(`${VIDEOS}/update-views-count/${publicId}`)
+    return data
   },
 
   async byPublicId(publicId: string | null) {
@@ -54,14 +48,9 @@ export const videoService = {
       throw new Error('Slug is required')
     }
 
-    try {
-      const { data } = await axiosClassic.get<ISingleVideoResponse>(
-        `${VIDEOS}/by-publicId/${publicId}`
-      )
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error('Failed to fetch all videos')
-    }
+    const { data } = await axiosClassic.get<ISingleVideoResponse>(
+      `${VIDEOS}/by-publicId/${publicId}`
+    )
+    return data
   },
 }

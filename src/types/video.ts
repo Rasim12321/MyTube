@@ -1,4 +1,4 @@
-import type { EnumVideoPlayerQuality } from '@/components/ui/VideoPlayer/video-player.types'
+import type { EnumVideoPlayerQuality } from '@/app/(public)/v/[publicId]/types'
 
 import type { IComment } from '@/types/comment'
 
@@ -16,11 +16,19 @@ export interface IVideo {
   isPublic: boolean
   channel: IChannel
   createdAt: string
+  updatedAt: string
 }
 
 export interface IFullVideo extends IVideo {
   likes: []
   comments: IComment[]
+}
+
+export interface IStudioVideoResponse extends IFullVideo {
+  tags: {
+    id: string
+    name: string
+  }[]
 }
 
 export interface ISingleVideoResponse extends IFullVideo {

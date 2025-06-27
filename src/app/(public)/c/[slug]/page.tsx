@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
-import ChanelVideos from '@/components/sections/ChannelVideos'
 import { Heading } from '@/components/ui/Heading'
 import DynamicSubscribeButton from '@/components/ui/SubscribeButton'
 import { VerifiedBadge } from '@/components/ui/VerifiedBadge'
+
+import ChannelVideos from '@/app/(public)/c/[slug]/components/ChannelVideos'
 
 import { transformCount } from '@/utils/transform-views'
 
@@ -45,7 +46,7 @@ export default async function ChannelPage({ params }: TPageSlugProp) {
       <div>
         <div className='relative h-[220px] w-full overflow-hidden rounded-3xl shadow-md'>
           <Image
-            alt={channel.user.name || ''}
+            alt={channel.user.name}
             src={channel.bannerUrl}
             fill
             style={{ objectFit: 'cover' }}
@@ -56,7 +57,7 @@ export default async function ChannelPage({ params }: TPageSlugProp) {
         <div className='mt-7 mb-12 flex items-start gap-5'>
           <Image
             alt={channel.slug}
-            src={channel.avatarUrl}
+            src={channel.avatarUrl || '/images/avatar.png'}
             width={162}
             height={162}
             priority
@@ -87,7 +88,7 @@ export default async function ChannelPage({ params }: TPageSlugProp) {
           </div>
         </div>
       </div>
-      {!!channel.videos.length && <ChanelVideos videos={channel.videos} />}
+      {!!channel.videos.length && <ChannelVideos videos={channel.videos} />}
     </section>
   )
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 
 import SingleVideo from '@/app/(public)/v/[publicId]'
 
@@ -36,9 +35,5 @@ export default async function VideoPage({ params }: TPagePublicIdProp) {
   const { publicId } = await params
   const video = await videoService.byPublicId(publicId)
 
-  return (
-    <Suspense fallback={<div>Loading search...</div>}>
-      <SingleVideo video={video} />
-    </Suspense>
-  )
+  return <SingleVideo video={video} />
 }

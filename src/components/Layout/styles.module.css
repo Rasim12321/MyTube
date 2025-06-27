@@ -1,6 +1,5 @@
-/* Скрытый сайдбар */
 .hidedSidebar > aside {
-  width: 3.8rem;
+  width: 4rem;
   flex-grow: 0;
   transition: width 0.35s ease;
 
@@ -10,7 +9,6 @@
   }
 }
 
-/* Показанный сайдбар */
 .showedSidebar > aside {
   width: var(--sidebar-width);
   transition: width 0.35s ease;

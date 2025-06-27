@@ -1,8 +1,9 @@
-import { EnumTokens } from '@/enums'
 import { AxiosError } from 'axios'
 import type { NextRequest } from 'next/server'
 
 import { authService } from '@/services/auth'
+
+import { EnumTokens } from '@/types/enums'
 
 export async function getTokensFromRequest(request: NextRequest) {
   const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value

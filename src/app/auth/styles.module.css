@@ -1,12 +1,12 @@
 .recaptcha {
-	filter: invert(1) grayscale(1);
-	transform: scale(1.19);
+  filter: invert(1) grayscale(1);
+  transform: scale(1.19);
 }
 
 .recaptcha > div {
-	/* margin-top: 1.7rem; */
+  /* margin-top: 1.7rem; */
 }
 
 .recaptcha > div > div {
-	@apply mx-auto;
+  @apply mx-auto;
 }

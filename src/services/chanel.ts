@@ -10,32 +10,17 @@ export const channelService = {
       throw new Error('Slug is required')
     }
 
-    try {
-      const { data } = await axiosClassic.get<IChannel>(`${CHANNELS}/by-slug/${slug}`)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error('Failed to fetch all videos')
-    }
+    const { data } = await axiosClassic.get<IChannel>(`${CHANNELS}/by-slug/${slug}`)
+    return data
   },
 
   async getAll() {
-    try {
-      const { data } = await axiosClassic.get<IChannel[]>(CHANNELS)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error()
-    }
+    const { data } = await axiosClassic.get<IChannel[]>(CHANNELS)
+    return data
   },
 
   async toggleSubscribe(slug: string) {
-    try {
-      const { data } = await instance.patch<IChannel[]>(`${CHANNELS}/toggle-subscribe/${slug}`)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error()
-    }
+    const { data } = await instance.patch<IChannel[]>(`${CHANNELS}/toggle-subscribe/${slug}`)
+    return data
   },
 }

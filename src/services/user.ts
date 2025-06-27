@@ -7,30 +7,15 @@ const USERS = '/users'
 
 export const userService = {
   async getProfile() {
-    try {
-      const { data } = await instance.get<IProfileResponse>(`${USERS}/profile`)
-      return data
-    } catch (error) {
-      console.error(error)
-      throw new Error()
-    }
+    const { data } = await instance.get<IProfileResponse>(`${USERS}/profile`)
+    return data
   },
 
   async updateProfile(data: ISettingsData) {
-    try {
-      return await instance.put<boolean>(`${USERS}/profile`, data)
-    } catch (error) {
-      console.error(error)
-      throw new Error()
-    }
+    return await instance.put<boolean>(`${USERS}/profile`, data)
   },
 
   async toggleLike(videoId: string) {
-    try {
-      return await instance.put<boolean>(`${USERS}/profile/likes`, { videoId })
-    } catch (error) {
-      console.error(error)
-      throw new Error()
-    }
+    return await instance.put<boolean>(`${USERS}/profile/likes`, { videoId })
   },
 }

@@ -4,7 +4,7 @@
   --padding-layout: 1.4rem;
 
   --color-primary: #ef4444;
-  --color-bg: #191b28;
+  --color-bg: #181920;
   --color-white: #fff;
   --color-border: rgba(255, 255, 255, 0.07);
 
@@ -19,6 +19,11 @@
 html,
 body {
   @apply bg-bg text-base text-white;
+}
+
+button,
+link {
+  @apply cursor-pointer;
 }
 
 @layer utilities {
@@ -50,30 +55,4 @@ body {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
-}
-
-.rc-slider-handle:focus,
-.rc-slider-handle:active {
-  outline: none;
-  box-shadow: none;
-}
-
-.tooltip-simple-text.rc-slider-tooltip .rc-slider-tooltip-inner {
-  @apply text-base;
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  color: #fff !important;
-  height: 16px;
-}
-
-.tooltip-simple-text.rc-slider-tooltip .rc-slider-tooltip-arrow {
-  display: none !important; /* Убираем стрелку тултипа */
-}
-
-.tooltip-simple-text.rc-slider-tooltip {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
 }

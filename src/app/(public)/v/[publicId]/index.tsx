@@ -1,15 +1,19 @@
 'use client'
 
 import clsx from 'clsx'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 
-import { Comments } from '@/components/sections/video/Comments'
-import SimilarVideos from '@/components/sections/video/SimilarVideos'
-import { VideoActions } from '@/components/sections/video/VideoActions'
-import { VideoChannel } from '@/components/sections/video/VideoChannel'
-import { VideoDescription } from '@/components/sections/video/VideoDescription'
+import { VideoPlayer } from '@/components/sections/VideoPlayer'
 import { Heading } from '@/components/ui/Heading'
-import { VideoPlayer } from '@/components/ui/VideoPlayer'
+import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
+
+import { Comments } from '@/app/(public)/v/[publicId]/components/Comments'
+import SimilarVideos from '@/app/(public)/v/[publicId]/components/SimilarVideos'
+import { VideoActions } from '@/app/(public)/v/[publicId]/components/VideoActions'
+import { VideoChannel } from '@/app/(public)/v/[publicId]/components/VideoChannel'
+import { VideoDescription } from '@/app/(public)/v/[publicId]/components/VideoDescription'
+import { useUpdateViews } from '@/app/(public)/v/[publicId]/hooks'
 
 import type { ISingleVideoResponse } from '@/types/video'
 
@@ -17,8 +21,15 @@ interface Props {
   video: ISingleVideoResponse
 }
 
+export const DynamicComments = dynamic(async () => Comments, {
+  // ssr: false,
+  loading: () => <SkeletonLoader count={3} className='mb-8 h-14 rounded-md' />,
+})
+
 export default function SingleVideo({ video }: Props) {
   const [isTheaterMode, setIsTheaterMode] = useState(false)
+
+  useUpdateViews({ video })
 
   const SimilarVideosSection = video.similarVideos.length > 0 && (
     <div>
@@ -43,7 +54,7 @@ export default function SingleVideo({ video }: Props) {
         />
 
         <div className='flex gap-20'>
-          <div>
+          <div className='w-full'>
             <div className='border-border mb-6 flex items-start justify-between border-b pb-6'>
               <div>
                 <Heading className='mb-1' isH1 classNameHeading='text-xl' text={video.title} />
@@ -56,7 +67,8 @@ export default function SingleVideo({ video }: Props) {
             <VideoChannel video={video} />
 
             <VideoDescription description={video.description} />
-            <Comments video={video} />
+
+            <DynamicComments video={video} />
           </div>
           {isTheaterMode && SimilarVideosSection}
         </div>

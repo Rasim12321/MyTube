@@ -1,4 +1,3 @@
-import { EnumTokens } from '@/enums'
 import { store } from '@/store'
 import Cookies from 'js-cookie'
 
@@ -8,6 +7,7 @@ import { axiosClassic, instance } from '@/api/axios'
 
 import type { AuthType, IAuthResponse } from '@/types/auth'
 import type { IAuthData } from '@/types/auth-form'
+import { EnumTokens } from '@/types/enums'
 
 const AUTH_URL = '/auth'
 

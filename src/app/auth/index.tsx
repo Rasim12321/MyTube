@@ -1,8 +1,8 @@
 'use client'
 
 import { useAuthForm } from 'hooks/useAuthForm'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/Button'
@@ -10,9 +10,12 @@ import { InputField } from '@/components/ui/InputField'
 import { Logo } from '@/components/ui/Logo'
 import { SkeletonLoader } from '@/components/ui/SkeletonLoader'
 
+import Recaptcha from '@/app/auth/components/Recaptcha'
+import SwitchAuth from '@/app/auth/components/SwitchAuth'
+
 import type { IAuthForm } from '@/types/auth-form'
 
-import styles from './styles.module.css'
+const DynamicRecaptcha = dynamic(async () => Recaptcha)
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true)
@@ -35,27 +38,7 @@ export default function Auth() {
           <Logo />
         </div>
 
-        <div className='mb-6 flex justify-center'>
-          <button
-            type='button'
-            className={`px-4 py-2 font-semibold ${
-              isLogin ? 'text-primary border-primary border-b-2' : 'text-gray-600'
-            }`}
-            onClick={() => setIsLogin(true)}
-          >
-            Login
-          </button>
-          <button
-            type='button'
-            className={`px-4 py-2 font-semibold ${
-              !isLogin ? 'text-primary border-primary border-b-2' : 'text-gray-600'
-            }`}
-            onClick={() => setIsLogin(false)}
-          >
-            Register
-          </button>
-        </div>
-
+        <SwitchAuth isLogin={isLogin} setIsLogin={setIsLogin} />
         <form onSubmit={handleSubmit(onSubmit)}>
           {isLoading ? (
             <SkeletonLoader count={3} className='mt-6 min-h-18' />
@@ -89,15 +72,7 @@ export default function Auth() {
                   placeholder='Enter password again:'
                 />
               )}
-              <div className='mt-7 min-h-[80px]'>
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  size='normal'
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                  theme='light'
-                  className={styles.recaptcha}
-                />
-              </div>
+              <DynamicRecaptcha ref={recaptchaRef} />{' '}
             </>
           )}
           <div className='mt-6 text-center'>

@@ -1,8 +1,8 @@
-import { EnumTokens } from '@/enums'
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
 
 import type { IAuthResponse } from '@/types/auth'
+import { EnumTokens } from '@/types/enums'
 import type { IUser } from '@/types/user'
 
 interface IAuthState {
